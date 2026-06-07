@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="page-title">MY JOBS</h1>
+    <div class="job-list">
+        {% for j in jobs %}
+            <a class="job-item" href="/jobs/{{j['id']}}/setup">{{j['name']}}</a>
+        {% else %}
+            <p class="empty-msg">No jobs yet.</p>
+        {% endfor %}
+    </div>
+    <form class="inline-form" action="/jobs/add" method="post">
+        <input class="input" type="text" name="name" placeholder="Job name">
+        <button class="btn btn-primary" type="submit">ADD JOB</button>
+    </form>
+{% endblock %}

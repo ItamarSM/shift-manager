@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="page-title">HISTORY</h1>
+    <form class="inline-form" action="/history" method="get">
+        <select class="input" name="job_id">
+            <option value="">All jobs</option>
+            {% for j in jobs %}
+                <option value="{{j['id']}}" {% if j['id']|string == selected %}selected{% endif %}>{{j['name']}}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-secondary" type="submit">FILTER</button>
+    </form>
+    <table class="shift-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Hours</th>
+                <th>Earnings</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shift in shifts %}
+                <tr>
+                    <td>{{ shift['clock_in'][:10] }}</td>
+                    <td>{{ shift["day_of_week"] }}</td>
+                    <td>{{ shift["hours_worked"] | round(2) }}</td>
+                    <td>₪{{ shift["earnings"] | round(2) }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4" class="empty-msg">No shifts yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

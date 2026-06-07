@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="page-title">SETTINGS</h1>
+    <form class="setup-form" action="/settings" method="post">
+        <label class="form-label">City
+            <select class="input" name="city">
+                <option value="Jerusalem" {% if city == "Jerusalem" %} selected {% endif %}>Jerusalem</option>
+                <option value="Tel Aviv" {% if city == "Tel Aviv" %} selected {% endif %}>Tel Aviv</option>
+                <option value="Haifa" {% if city == "Haifa" %} selected {% endif %}>Haifa</option>
+                <option value="Beer Sheva" {% if city == "Beer Sheva" %} selected {% endif %}>Beer Sheva</option>
+                <option value="Eilat" {% if city == "Eilat" %} selected {% endif %}>Eilat</option>
+                <option value="Netanya" {% if city == "Netanya" %} selected {% endif %}>Netanya</option>
+            </select>
+        </label>
+        <button class="btn btn-primary" type="submit">SAVE</button>
+    </form>
+{% endblock %}

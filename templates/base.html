@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shift Manager</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/static/manifest.json">
+</head>
+<body>
+    {% if "user_id" in session %}
+        <nav class="navbar">
+            <a class="nav-link" href="/">HOME</a>
+            <a class="nav-link" href="/jobs">MY JOBS</a>
+            <a class="nav-link" href="/history">HISTORY</a>
+            <a class="nav-link" href="/stats">STATS</a>
+            <a class="nav-link" href="/settings">SETTINGS</a>
+            <form action="/logout" method="post">
+                <button class="btn btn-logout">LOGOUT</button>
+            </form>
+        </nav>
+    {% endif %}
+    <main class="container">
+        {% block content %} {% endblock %}
+    </main>
+</body>
+</html>

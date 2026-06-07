@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="auth-card">
+        <h1 class="auth-title">REGISTER</h1>
+        <form class="auth-form" action="/register" method="post">
+            <input class="input" type="text" name="username" placeholder="Username">
+            <input class="input" type="password" name="password" placeholder="Password">
+            <button class="btn btn-primary" type="submit">REGISTER</button>
+        </form>
+        <p class="auth-switch">Already have an account? <a href="/login">Login here</a></p>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if active_shift %}
+    <script>
+        var clockIn = "{{active_shift['clock_in']}}"
+        function timer(){
+            var current = new Date()
+            var seconds = (current - new Date(clockIn)) / 1000
+            var hours = Math.floor(seconds / 3600)
+            seconds = seconds - (hours * 3600)
+            var minutes = Math.floor(seconds / 60)
+            seconds = Math.floor(seconds - (minutes * 60))
+            document.getElementById("timer").textContent = `${hours}h ${minutes}m ${seconds}s`
+        }
+        setInterval(timer, 1000)
+    </script>
+        <div class="shift-card">
+            <p class="shift-label">CLOCKED IN</p>
+            <p class="shift-job">{{active_shift['name']}}</p>
+            <p class="shift-timer" id="timer"></p>
+            <form action="/clock-out" method="post">
+                <button class="btn btn-danger" type="submit">CLOCK OUT</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="shift-card">
+            <p class="shift-label">SELECT JOB</p>
+            <form class="clock-form" action="/clock-in" method="post">
+                <select class="input" name="job_id">
+                    {% for job in jobs %}
+                        <option value="{{job['id']}}">{{job['name']}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-primary" type="submit">CLOCK IN</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="page-title">EARNINGS</h1>
+    <div class="chart-wrapper">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var labels = {{ labels | tojson }}
+        var totals = {{ totals | tojson }}
+        new Chart(document.getElementById("myChart"), {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Earnings (₪)",
+                    data: totals,
+                    backgroundColor: "#9097c0",
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        })
+    </script>
+{% endblock %}

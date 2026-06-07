@@ -1,0 +1,292 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f0ede9;
+    color: #020202;
+    min-height: 100vh;
+}
+
+/* NAV */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #503b31;
+    border-bottom: none;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #a7bbec;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.15s;
+}
+
+.nav-link:hover {
+    background: #705d56;
+    color: #fff;
+}
+
+/* LAYOUT */
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+/* TYPOGRAPHY */
+.page-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.85; }
+
+.btn-primary {
+    background: #503b31;
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #a7bbec;
+    color: #020202;
+}
+
+.btn-danger {
+    background: #9097c0;
+    color: #fff;
+}
+
+.btn-logout {
+    background: none;
+    color: #705d56;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
+}
+
+.btn-logout:hover {
+    background: #f2f2f7;
+    opacity: 1;
+}
+
+/* INPUTS */
+.input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d1d6;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #fff;
+    color: #020202;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.input:focus {
+    border-color: #503b31;
+}
+
+/* AUTH */
+.auth-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.auth-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.auth-switch {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #705d56;
+}
+
+.auth-switch a {
+    color: #9097c0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.error {
+    color: #9097c0;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* DASHBOARD */
+.shift-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.shift-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #705d56;
+}
+
+.shift-job {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.shift-timer {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: #9097c0;
+    font-variant-numeric: tabular-nums;
+}
+
+.clock-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* JOBS */
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.job-item {
+    display: block;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #020202;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: box-shadow 0.15s;
+}
+
+.job-item:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.inline-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.inline-form .input {
+    flex: 1;
+}
+
+.empty-msg {
+    color: #705d56;
+    font-size: 14px;
+    text-align: center;
+    padding: 16px 0;
+}
+
+/* SETUP / SETTINGS */
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #705d56;
+}
+
+/* HISTORY TABLE */
+.shift-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.shift-table th {
+    padding: 12px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #705d56;
+    text-align: left;
+    border-bottom: 1px solid #f2f2f7;
+}
+
+.shift-table td {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-bottom: 1px solid #f2f2f7;
+}
+
+.shift-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* STATS */
+.chart-wrapper {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="page-title">SALARY SETUP</h1>
+    <form class="setup-form" action="/jobs/{{id}}/setup" method="post">
+        <label class="form-label">Regular rate (₪/hr)
+            <input class="input" type="number" name="regular" step="0.01"
+                {% if salary %} value="{{salary['regular_rate']}}" {% endif %}>
+        </label>
+        <label class="form-label">Shabbat rate (₪/hr)
+            <input class="input" type="number" name="shabbat" step="0.01"
+                {% if salary %} value="{{salary['shabbat_rate']}}" {% endif %}>
+        </label>
+        <button class="btn btn-primary" type="submit">SAVE</button>
+    </form>
+{% endblock %}

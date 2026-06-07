@@ -1,0 +1,9 @@
+{
+    "name": "Shift Manager",
+    "short_name": "Shifty",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+        {"src": "/static/icon.png", "sizes": "192x192", "type": "image/png"}
+    ]
+}
