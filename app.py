@@ -97,7 +97,11 @@ def index():
     cursor.execute("SELECT * FROM jobs WHERE user_id=%s", (session["user_id"],))
     job_list = cursor.fetchall()
     cursor.execute("SELECT shifts.*, jobs.name FROM shifts JOIN jobs ON shifts.job_id=jobs.id WHERE shifts.user_id=%s AND clock_out IS NULL", (session["user_id"],))
-    return render_template("index.html", jobs=job_list, active_shift=cursor.fetchone())
+    active_shift = cursor.fetchone()
+    clock_in_iso = None
+    if active_shift:
+        clock_in_iso = datetime.datetime.strptime(active_shift["clock_in"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=ZoneInfo("Asia/Jerusalem")).isoformat()
+    return render_template("index.html", jobs=job_list, active_shift=active_shift, clock_in_iso=clock_in_iso)
 
 @app.route("/settings", methods=["POST", "GET"])
 def settings():

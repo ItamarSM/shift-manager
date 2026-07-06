@@ -3,7 +3,7 @@
 
     {% if active_shift %}
     <script>
-        var clockIn = "{{active_shift['clock_in']}}"
+        var clockIn = "{{clock_in_iso}}"
         function timer(){
             var current = new Date()
             var seconds = (current - new Date(clockIn)) / 1000
