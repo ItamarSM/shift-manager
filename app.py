@@ -4,6 +4,7 @@ from db import get_conn, get_cursor, init_db
 import datetime
 import requests
 import os
+from zoneinfo import ZoneInfo
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "Itush0374")
@@ -160,7 +161,7 @@ def clock_in():
     if "user_id" not in session:
         return redirect(url_for("login"))
     job_id = request.form["job_id"]
-    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    current_time = datetime.datetime.now(ZoneInfo("Asia/Jerusalem")).strftime("%Y-%m-%d %H:%M:%S")
     cursor.execute("INSERT INTO shifts (job_id, user_id, clock_in) VALUES(%s, %s, %s)", (job_id, session["user_id"], current_time))
     conn.commit()
     conn.close()
@@ -179,11 +180,11 @@ def clock_out():
     shabbat_times = get_shabbat_times(city)
     cursor.execute("SELECT * FROM salary_config WHERE job_id=%s", (active["job_id"],))
     config = cursor.fetchone()
-    clockout = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    time = (datetime.datetime.now() - datetime.datetime.strptime(active["clock_in"], "%Y-%m-%d %H:%M:%S")).total_seconds() / 3600
+    clockout = datetime.datetime.now(ZoneInfo("Asia/Jerusalem")).strftime("%Y-%m-%d %H:%M:%S")
+    time = (datetime.datetime.now(ZoneInfo("Asia/Jerusalem")).replace(tzinfo=None) - datetime.datetime.strptime(active["clock_in"], "%Y-%m-%d %H:%M:%S")).total_seconds() / 3600
     cursor.execute("UPDATE shifts SET clock_out=%s, hours_worked=%s WHERE id=%s", (clockout, time, active["id"]))
     clockin = datetime.datetime.strptime(active["clock_in"], "%Y-%m-%d %H:%M:%S")
-    earnings = calculate_earnings(clockin, datetime.datetime.now(), shabbat_times[0], shabbat_times[1], config["regular_rate"], config["shabbat_rate"])
+    earnings = calculate_earnings(clockin, datetime.datetime.now(ZoneInfo("Asia/Jerusalem")).replace(tzinfo=None), shabbat_times[0], shabbat_times[1], config["regular_rate"], config["shabbat_rate"])
     cursor.execute("UPDATE shifts SET earnings=%s, day_of_week=%s WHERE id=%s", (earnings, clockin.strftime("%A"), active["id"]))
     conn.commit()
     conn.close()
